@@ -1,0 +1,63 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; ce programme est pour l'assembleur RealView (Keil)
+    2 00000000                 thumb
+    3 00000000                 area             moncode, code, readonly
+    4 00000000                 export           tempo
+    5 00000000         ;
+    6 00000000         tempo   proc
+    7 00000000         
+    8 00000000 4601            MOV              R1, R0
+    9 00000002 BF00    repeat  NOP
+   10 00000004 BF00            NOP
+   11 00000006 BF00            NOP
+   12 00000008 BF00            NOP
+   13 0000000A BF00            NOP
+   14 0000000C BF00            NOP
+   15 0000000E BF00            NOP
+   16 00000010 3901            SUBS             R1, #1
+   17 00000012 D1F6            BNE              repeat
+   18 00000014 4770            BX               LR
+   19 00000016         ;
+   20 00000016                 endp
+   21 00000016                 end
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\td.d -
+o.\td.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\ST
+\STM32F10x --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --list=.
+\td.lst "..\..\TD assembleur\td.s"
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+moncode 00000000
+
+Symbol: moncode
+   Definitions
+      At line 3 in file ..\..\TD
+   Uses
+      None
+Comment: moncode unused
+repeat 00000002
+
+Symbol: repeat
+   Definitions
+      At line 9 in file ..\..\TD
+   Uses
+      At line 17 in file ..\..\TD
+Comment: repeat used once
+tempo 00000000
+
+Symbol: tempo
+   Definitions
+      At line 6 in file ..\..\TD
+   Uses
+      At line 4 in file ..\..\TD
+Comment: tempo used once
+3 symbols
+335 symbols in table

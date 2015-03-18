@@ -1,0 +1,134 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; ce programme est pour l'assembleur RealView (Keil)
+    2 00000000                 thumb
+    3 00000000                 area             moncode, code, readonly
+    4 00000000                 export           Carre1
+    5 00000000         ;
+    6 00000000         
+    7 00000000         
+    8 00000000 F04F 0200 
+                       tempo   MOV              R2,#0
+    9 00000004 4282    LOOP    CMP              R2,R0
+   10 00000006 D004            BEQ              FIN
+   11 00000008 4409            ADD              R1,R1
+   12 0000000A 4409            ADD              R1,R1
+   13 0000000C F102 0201       ADD              R2,#1       ;
+   14 00000010 E7F8            B                LOOP
+   15 00000012 4770    FIN     bx               lr
+   16 00000014         ;
+   17 00000014         
+   18 00000014         Carre1  proc
+   19 00000014         
+   20 00000014 40010C10 
+                       GPIOB_BSRR
+                               equ              0x40010C10  ; Bit Set/Reset reg
+                                                            ister
+   21 00000014         
+   22 00000014         ; boucle infinie 
+   23 00000014         ; mise a 1 de PB1
+   24 00000014 4B07    BOUCLE  ldr              r3, =GPIOB_BSRR
+   25 00000016 2102            movs             r1, #0x00000002
+   26 00000018 6019            str              r1, [r3]
+   27 0000001A         
+   28 0000001A         ; Appel TEMPO
+   29 0000001A F04F 0064       MOV              R0, #100
+   30 0000001E F7FF FFEF       BL               tempo
+   31 00000022         
+   32 00000022         ; mise a zero de PB1
+   33 00000022 4B04            ldr              r3, =GPIOB_BSRR
+   34 00000024 F45F 3100       movs             r1, #0x00020000
+   35 00000028 6019            str              r1, [r3]
+   36 0000002A         
+   37 0000002A         ; Appel TEMPO
+   38 0000002A F04F 0064       MOV              R0, #100
+   39 0000002E F7FF FFE7       BL               tempo
+   40 00000032         ;Retour
+   41 00000032 E7EF            B                BOUCLE
+   42 00000034         ; Fin boucle
+   43 00000034         
+   44 00000034                 endp
+   45 00000034         ;
+   46 00000034                 end
+              40010C10 
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=Carre1.d
+ -oCarre1.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\In
+c\ST\STM32F10x --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --li
+st=.\Carre1.lst Sources\Carre1.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+BOUCLE 00000014
+
+Symbol: BOUCLE
+   Definitions
+      At line 24 in file Sources\Carre1.s
+   Uses
+      At line 41 in file Sources\Carre1.s
+Comment: BOUCLE used once
+Carre1 00000014
+
+Symbol: Carre1
+   Definitions
+      At line 18 in file Sources\Carre1.s
+   Uses
+      At line 4 in file Sources\Carre1.s
+Comment: Carre1 used once
+FIN 00000012
+
+Symbol: FIN
+   Definitions
+      At line 15 in file Sources\Carre1.s
+   Uses
+      At line 10 in file Sources\Carre1.s
+Comment: FIN used once
+LOOP 00000004
+
+Symbol: LOOP
+   Definitions
+      At line 9 in file Sources\Carre1.s
+   Uses
+      At line 14 in file Sources\Carre1.s
+Comment: LOOP used once
+moncode 00000000
+
+Symbol: moncode
+   Definitions
+      At line 3 in file Sources\Carre1.s
+   Uses
+      None
+Comment: moncode unused
+tempo 00000000
+
+Symbol: tempo
+   Definitions
+      At line 8 in file Sources\Carre1.s
+   Uses
+      At line 30 in file Sources\Carre1.s
+      At line 39 in file Sources\Carre1.s
+
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+GPIOB_BSRR 40010C10
+
+Symbol: GPIOB_BSRR
+   Definitions
+      At line 20 in file Sources\Carre1.s
+   Uses
+      At line 24 in file Sources\Carre1.s
+      At line 33 in file Sources\Carre1.s
+
+1 symbol
+341 symbols in table

@@ -1,0 +1,4 @@
+--cpu Cortex-M3 "principal.o" "carre1.o" "timer_callback.o" "09.o" "U:\Bureau\3A\BE\Partie Assembleur\Projet_Step_1\Lib\gassp72.lib" "startup-rvds.o" 
+--library_type=microlib --ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\Proj_Step_1.map" -o Proj_Step_1.axf
